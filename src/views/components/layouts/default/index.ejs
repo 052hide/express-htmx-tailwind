@@ -1,14 +1,18 @@
 <% function content(__append) { %>
-  <header>
-    <a href="/">Top</a>
-    <a href="/dashboard">Dashboard</a>
-  </header>
-  <main>
-    <% if (typeof main !== 'undefined') { %>
-      <%- main(__append) %>
-    <% } %>
-  </main>
-  <footer>Footer</footer>
+  <div class="tw-flex tw-flex-col tw-min-h-screen">
+    <header class="tw-p-4">
+      <ul class="tw-flex tw-items-center tw-gap-4">
+        <li><a href="/">Top</a></li>
+        <li></li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+    </header>
+    <main class="tw-flex-1">
+      <% if (typeof main !== 'undefined') { %>
+        <%- main(__append) %>
+      <% } %>
+    </main>
+    <footer class="tw-p-4">Footer</footer>
+  </div>
 <% } %>
 
 <%-
