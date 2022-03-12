@@ -1,3 +1,9 @@
-<%- include('../components/metas/header/index.ejs') %>
-<%- include('../components/pages/top/index.ejs') %>
-<%- include('../components/metas/footer/index.ejs') %>
+<% function main(__append) { %>
+  <%- include('../components/pages/top/index.ejs') %>
+<% } %>
+
+<%-
+  include('../components/layouts/default/index.ejs', {
+    main,
+  })
+%>

@@ -1,0 +1,18 @@
+<% function content(__append) { %>
+  <header>
+    <a href="/">Top</a>
+    <a href="/dashboard">Dashboard</a>
+  </header>
+  <main>
+    <% if (typeof main !== 'undefined') { %>
+      <%- main(__append) %>
+    <% } %>
+  </main>
+  <footer>Footer</footer>
+<% } %>
+
+<%-
+  include('../../../app.ejs', {
+    content,
+  })
+%>

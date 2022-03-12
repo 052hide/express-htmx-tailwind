@@ -7,3 +7,12 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <% if (typeof content !== 'undefined') { %>
+      <%- content(__append) %>
+    <% } else { %>
+      This is the default content
+    <% } %>
+    <script src="/htmx/htmx.min.js"></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
