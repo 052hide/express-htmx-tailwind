@@ -14,3 +14,9 @@ app.listen(3000, () => {
 app.get('/', (req, res) => {
   res.render('pages/index')
 })
+
+app.get('/dashboard', (req, res) => {
+  res.render('pages/dashboard', {
+    username: 'aaaaa',
+  })
+})
