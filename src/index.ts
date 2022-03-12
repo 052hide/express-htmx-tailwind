@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import { TopRouter } from './routes'
 
 const app = express()
 
@@ -15,17 +16,4 @@ app.listen(3000, () => {
   console.log('Start on port 3000.')
 })
 
-app.get('/', (req, res) => {
-  res.render('pages/index')
-})
-
-app.get('/dashboard', (req, res) => {
-  res.render('pages/dashboard', {
-    username: 'aaaaa',
-  })
-})
-
-app.post('/clicked', (req, res) => {
-  console.log('aaa')
-  res.render('pages/index')
-})
+app.use('/', TopRouter)
