@@ -2,8 +2,7 @@
   "name": "express-htmx-tailwind",
   "version": "0.1.0",
   "description": "",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/052hide/express-htmx-tailwind.git"
@@ -12,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/052hide/express-htmx-tailwind/issues"
   },
-  "homepage": "https://github.com/052hide/express-htmx-tailwind#readme"
+  "homepage": "https://github.com/052hide/express-htmx-tailwind#readme",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
 }
