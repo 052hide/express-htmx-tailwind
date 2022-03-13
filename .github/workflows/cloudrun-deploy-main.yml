@@ -1,0 +1,63 @@
+name: cloudrun-deploy-main
+
+on:
+  # release:
+  #   types: [published]
+  push:
+    branches:
+      - main
+
+env:
+  SERVICE_NAME: ${{ secrets.MAIN_SERVICE_NAME }}
+  PORT: ${{ secrets.MAIN_PORT }}
+  GCP_PROJECT_ID: ${{ secrets.MAIN_GCP_PROJECT_ID }}
+  GCP_REGION: ${{ secrets.MAIN_GCP_REGION }}
+  IMAGE: asia.gcr.io/${{ secrets.MAIN_GCP_PROJECT_ID }}/${{ secrets.MAIN_SERVICE_NAME }}:${{ github.sha }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Install Volta
+        uses: volta-cli/action@v1
+
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Authenticate Google Cloud
+        id: 'auth'
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: 'latest'
+          project_id: ${{ secrets.GCP_PROJECT_ID_STAGING }}
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_STAGING }}
+          export_default_credentials: true
+
+      - name: Google Cloud auth configure docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Build a docker image
+        run: docker build -t $IMAGE .
+
+      - name: Push the docker image to Container Registry
+        run: docker push $IMAGE
+
+      - name: Deploy to Cloud Run
+        run: |
+            gcloud run deploy $SERVICE_NAME \
+              --image $IMAGE \
+              --port $PORT \
+              --project $GCP_PROJECT_ID \
+              --region $GCP_REGION \
+              --platform=managed \
+              --allow-unauthenticated \
+              --quiet
