@@ -1,6 +1,6 @@
 module.exports = {
   prefix: 'tw-',
-  content: ['src/views/**/*.{html,js,ejs,ts}'],
+  content: ['views/**/*.{html,js,ejs,ts}'],
   theme: {
     extend: {},
   },
