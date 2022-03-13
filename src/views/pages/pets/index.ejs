@@ -1,0 +1,9 @@
+<% function main(__append) { %>
+  <%- include('../../components/pages/pets/index.ejs') %>
+<% } %>
+
+<%-
+  include('../../components/layouts/default/index.ejs', {
+    main,
+  })
+%>

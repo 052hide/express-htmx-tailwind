@@ -1,0 +1,8 @@
+<ul class="tw-flex tw-flex-col tw-gap-4 tw-p-4">
+  <% pets.map(pet => { %>
+    <li class="tw-w-full tw-flex tw-items-center tw-gap-4">
+      <p><%= pet.id %></p>
+      <p><%= pet.name %></p>
+    </li>
+  <% }) %>
+</ul>

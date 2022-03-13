@@ -1,0 +1,10 @@
+<p class="tw-p-4">Pets</p>
+<div id="pet-list">
+  <%- include('../../features/pet/petList/index.ejs', { pets }) %>
+</div>
+<button
+  hx-get="/pets/create"
+  hx-target="this"
+  hx-swap="outerHTML"
+  class="tw-p-4"
+>Create</button>
